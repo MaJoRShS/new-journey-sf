@@ -4,9 +4,9 @@ import br.com.dt_itau.newjourneysf.entities.UserEntity;
 import br.com.dt_itau.newjourneysf.models.User;
 import br.com.dt_itau.newjourneysf.repositories.UserRepository;
 import br.com.dt_itau.newjourneysf.services.UserService;
-import br.com.dt_itau.newjourneysf.services.exceptions.NotFoundXeXe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,49 +17,39 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
     public List<User> getUsersAll() {
-        List<User> userList = this.userRepository.findAll().stream().map(r -> r.toModel()).collect(Collectors.toList());
-        return userList;
+        return this.userRepository.findAll().stream().map(UserEntity::toModel).collect(Collectors.toList());
     }
 
-    public UserEntity getUsersById(Long id) {
-        var userEntity = userRepository.findById(id);
-        return userEntity.orElseThrow(() -> new NotFoundXeXe(id));
+    @Override
+    public User getUsersById(Long id) {
+        var userById = userRepository.findById(id);
+        userById.get();
+        return userById.get().toModel();
     }
 
-    public User insert(User obj) {
-//        return userRepository.save(obj);
+    @PostMapping
+    public User insert(@RequestBody User obj){
+//        obj = userService.insert(obj);
+//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+//        return User.created(uri).body(obj);
         return null;
     }
-
-    public void delete(Long id) {
-//        try {
-//            userRepository.deleteById(id);
-//        }catch (EmptyResultDataAccessException e){
-//            throw new ResourceNotFoundException(id);
-//        }catch (DataIntegrityViolationException e){
-//            throw new DatabaseException(e.getMessage());
-//        }
+//
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable Long id){
+//        userService.delete(id);
+//        return User.noContent().build();
     }
-
-    public User update(Long id, User obj) {
-//        try {
-//            User entity = userRepository.getOne(id);
-//            updataData(entity, obj);
-//            return userRepository.save(entity);
-//        }catch (EntityNotFoundException e){
-//            throw new ResourceNotFoundException(id);
-//        }
-        return null;
+//
+//
+    @PutMapping(value = "/{id}")
+    public User update(@PathVariable Long id, @RequestBody User obj){
+//        obj = service.update(id, obj);
+//        return ResponseEntity.ok().body(obj);
+        return  null;
     }
-
-    private void updataData(User entity, User obj) {
-//        entity.setName(obj.getName());
-//        entity.setEmail(obj.getEmail());
-//        entity.setPhone(obj.getPhone());
-
-    }
-
 }
 

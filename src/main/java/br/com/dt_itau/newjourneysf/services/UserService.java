@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserService {
 
     public List<User> getUsersAll();
-    public UserEntity getUsersById(Long id);
+    public User getUsersById(Long id);
     public User insert(User obj);
     public void delete(Long id);
     public User update(Long id, User obj);

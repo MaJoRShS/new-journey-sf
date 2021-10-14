@@ -1,6 +1,5 @@
 package br.com.dt_itau.newjourneysf.controllers.presenters;
 
-import br.com.dt_itau.newjourneysf.entities.UserEntity;
 import br.com.dt_itau.newjourneysf.models.User;
 
 public class UserPresenter {
@@ -13,6 +12,9 @@ public class UserPresenter {
     public UserPresenter(User user) {
         if (user != null) {
             this.name = user.getName();
+            this.email = user.getEmail();
+            this.phone = user.getPhone();
+            this.password = user.getPassword();
         }
     }
 

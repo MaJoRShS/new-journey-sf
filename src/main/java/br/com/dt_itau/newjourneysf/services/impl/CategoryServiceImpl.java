@@ -21,17 +21,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getCategoryAll() {
-        List<Category> categoryList = this.categoryRepository.findAll().stream().map(r -> r.toModel()).collect(Collectors.toList());
-        return categoryList;
+        return this.categoryRepository.findAll().stream().map(CategoryEntity::toModel).collect(Collectors.toList());
     }
 
-
+    @Override
     public Category getCategoryById(Long id) {
         var categoryById = categoryRepository.findById(id);
-        if (categoryById.get() != null) {
-            return categoryById.get().toModel();
-        }
-         throw new NotFoundXeXe(id);
+        categoryById.get();
+        return categoryById.get().toModel();
     }
 
 }

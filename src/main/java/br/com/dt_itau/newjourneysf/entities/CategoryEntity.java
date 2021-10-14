@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import br.com.dt_itau.newjourneysf.models.Category;
+import br.com.dt_itau.newjourneysf.models.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,9 +26,9 @@ public class CategoryEntity implements Serializable {
     private Long id;
     private String name;
 
-//    @JsonIgnore
-//    @ManyToMany(mappedBy = "categories")
-//    private Set<ProductEntity> productEntities = new HashSet<>();
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private final Set<ProductEntity> product = new HashSet<>();
 
     public CategoryEntity() {
     }
@@ -37,9 +38,9 @@ public class CategoryEntity implements Serializable {
         this.name = name;
     }
 
-//    public Set<ProductEntity> getProducts() {
-//        return productEntities;
-//    }
+    public Set<ProductEntity> getProducts() {
+        return product;
+    }
 
     public Long getId() {
         return id;
@@ -60,7 +61,6 @@ public class CategoryEntity implements Serializable {
 
     public Category toModel(){
         Category category = new Category();
-
         category.setId(this.id);
         category.setName(this.name);
 

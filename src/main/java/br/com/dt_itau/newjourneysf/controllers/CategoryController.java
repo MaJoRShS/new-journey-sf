@@ -58,7 +58,7 @@ public class CategoryController {
         if (response == null || response.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return new ResponseEntity<>(response.stream().map(s -> new CategoryPresenter(s))
+        return new ResponseEntity<>(response.stream().map(CategoryPresenter::new)
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 

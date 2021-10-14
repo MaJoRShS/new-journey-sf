@@ -1,9 +1,13 @@
 package br.com.dt_itau.newjourneysf.entities;
 
+import br.com.dt_itau.newjourneysf.models.Order;
 import br.com.dt_itau.newjourneysf.models.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_user")
@@ -81,6 +85,7 @@ public class UserEntity implements Serializable {
 
     public User toModel(){
         User user = new User();
+        user.setId(this.id);
         user.setName(this.name);
         user.setEmail(this.email);
         user.setPhone(this.phone);

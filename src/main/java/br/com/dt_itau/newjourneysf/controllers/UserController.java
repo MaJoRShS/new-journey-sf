@@ -50,14 +50,14 @@ public class UserController {
         if (response == null || response.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return new ResponseEntity<>(response.stream().map(s -> new UserPresenter(s))
+        return new ResponseEntity<>(response.stream().map(UserPresenter::new)
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<UserPresenter> findById(@PathVariable Long id) {
-//        var response = this.userService.getUsersById(id);
-//        return new ResponseEntity<>(new UserPresenter(response), HttpStatus.OK);
-//    }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserPresenter> findById(@PathVariable Long id) {
+        var response = this.userService.getUsersById(id);
+        return new ResponseEntity<>(new UserPresenter(response), HttpStatus.OK);
+    }
 }
