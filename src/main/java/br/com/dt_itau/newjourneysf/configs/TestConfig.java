@@ -44,7 +44,6 @@ public class TestConfig implements CommandLineRunner {
         CategoryEntity cat2 = new CategoryEntity(null, "Books");
         CategoryEntity cat3 = new CategoryEntity(null, "Computers");
 
-
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
 

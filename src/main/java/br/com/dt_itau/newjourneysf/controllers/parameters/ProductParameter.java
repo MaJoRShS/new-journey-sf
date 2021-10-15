@@ -1,5 +1,6 @@
 package br.com.dt_itau.newjourneysf.controllers.parameters;
 
+import br.com.dt_itau.newjourneysf.controllers.presenters.CategoryPresenter;
 import br.com.dt_itau.newjourneysf.models.Category;
 import br.com.dt_itau.newjourneysf.models.Product;
 
@@ -12,7 +13,7 @@ public class ProductParameter implements Serializable {
     private String description;
     private Double price;
     private String imgUrl;
-    private Category categories;
+    private CategoryPresenter categories;
 
 
     public Long getId() {
@@ -55,11 +56,11 @@ public class ProductParameter implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public Category getCategories() {
+    public CategoryPresenter getCategories() {
         return categories;
     }
 
-    public void setCategories(Category categories) {
+    public void setCategories(CategoryPresenter categories) {
         this.categories = categories;
     }
 
@@ -69,7 +70,6 @@ public class ProductParameter implements Serializable {
     product.setDescription(this.description);
     product.setPrice(this.price);
     product.setImgUrl(this.imgUrl);
-    setCategories(this.getCategories());
 
     return product;
     }

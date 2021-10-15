@@ -27,6 +27,7 @@ public class ProductEntity implements Serializable {
 //    @OneToMany(mappedBy = "id.product")
 //    private Set<OrderItem> items = new HashSet<>();
 
+
     public ProductEntity() {
     }
 
@@ -78,11 +79,13 @@ public class ProductEntity implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-
     public Set<CategoryEntity> getCategories() {
         return categories;
     }
 
+    public void setCategories(Set<CategoryEntity> categories) {
+        this.categories = categories;
+    }
 
 //    @JsonIgnore
 //    public Set<Order> getOrders() {
@@ -100,7 +103,7 @@ public class ProductEntity implements Serializable {
         product.setDescription(this.description);
         product.setPrice(this.price);
         product.setImgUrl(this.imgUrl);
-        product.setCategories(product.getCategories());
+        setCategories(categories);
 
         return product;
 

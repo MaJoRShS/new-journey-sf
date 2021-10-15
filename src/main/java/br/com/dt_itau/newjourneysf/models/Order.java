@@ -9,7 +9,7 @@ public class Order {
 
     private Long id;
     private Instant moment;
-    private UserEntity client;
+    private User client;
     private OrderStatus orderStatus;
 
     public Long getId() {
@@ -24,10 +24,10 @@ public class Order {
     public void setMoment(Instant moment) {
         this.moment = moment;
     }
-    public UserEntity getClient() {
+    public User getClient() {
         return client;
     }
-    public void setClient(UserEntity client) {
+    public void setClient(User client) {
         this.client = client;
     }
     public OrderStatus getOrderStatus() {

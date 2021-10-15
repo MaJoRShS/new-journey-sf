@@ -110,7 +110,7 @@ public class OrderEntity implements Serializable {
         order.setId(this.id);
         order.setMoment(this.moment);
         order.setOrderStatus(getOrderStatus());
-        order.setClient(this.client);
+        order.setClient(this.client.toModel());
 
         return order;
     }

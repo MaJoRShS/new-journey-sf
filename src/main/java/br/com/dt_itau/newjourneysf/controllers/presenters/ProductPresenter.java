@@ -9,7 +9,7 @@ public class ProductPresenter {
     private String description;
     private Double price;
     private String imgUrl;
-    private Category categories;
+    private CategoryPresenter categories;
 
     public ProductPresenter(Product product) {
         if (product != null) {
@@ -17,7 +17,7 @@ public class ProductPresenter {
             this.description = product.getDescription();
             this.price = product.getPrice();
             this.imgUrl = product.getImgUrl();
-            this.categories = product.getCategories();
+            this.categories = new CategoryPresenter(product.getCategories());
 
         }
     }
@@ -54,12 +54,11 @@ public class ProductPresenter {
         this.imgUrl = imgUrl;
     }
 
-    public Category getCategories() {
+    public CategoryPresenter getCategories() {
         return categories;
     }
 
-    public void setCategories(Category categories) {
+    public void setCategories(CategoryPresenter categories) {
         this.categories = categories;
     }
-
 }

@@ -55,8 +55,4 @@ public class Product {
     public void setCategories(Category categories) {
         this.categories = categories;
     }
-
-    public void setCategories() {
-
-    }
 }

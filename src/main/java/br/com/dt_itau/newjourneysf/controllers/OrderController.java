@@ -1,6 +1,7 @@
 package br.com.dt_itau.newjourneysf.controllers;
 
 import br.com.dt_itau.newjourneysf.controllers.presenters.OrderPresenter;
+import br.com.dt_itau.newjourneysf.controllers.presenters.UserPresenter;
 import br.com.dt_itau.newjourneysf.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
