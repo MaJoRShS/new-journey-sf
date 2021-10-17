@@ -6,7 +6,8 @@ public class Product {
     private String description;
     private Double price;
     private String imgUrl;
-    private Category categories;
+    private Category category;
+
 
     public Long getId() {
         return id;
@@ -48,11 +49,23 @@ public class Product {
         this.imgUrl = imgUrl;
     }
 
-    public Category getCategories() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategories(Category categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", category=" + category +
+                '}';
     }
 }

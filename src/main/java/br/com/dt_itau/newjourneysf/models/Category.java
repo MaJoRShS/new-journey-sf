@@ -1,5 +1,7 @@
 package br.com.dt_itau.newjourneysf.models;
 
+import br.com.dt_itau.newjourneysf.entities.CategoryEntity;
+
 import java.io.Serializable;
 
 public class Category implements Serializable {

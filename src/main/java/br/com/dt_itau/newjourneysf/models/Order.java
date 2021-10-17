@@ -37,5 +37,13 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", moment=" + moment +
+                ", client=" + client +
+                ", orderStatus=" + orderStatus +
+                '}';
+    }
 }
-

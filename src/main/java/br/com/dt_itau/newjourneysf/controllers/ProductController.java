@@ -1,8 +1,6 @@
 package br.com.dt_itau.newjourneysf.controllers;
 
-import br.com.dt_itau.newjourneysf.controllers.presenters.CategoryPresenter;
 import br.com.dt_itau.newjourneysf.controllers.presenters.ProductPresenter;
-import br.com.dt_itau.newjourneysf.services.CategoryService;
 import br.com.dt_itau.newjourneysf.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +21,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductPresenter>> finddAll() {
-        var response = this.productService.getProductsdAll();
+        var response = this.productService.getProductsAll();
         if (response == null || response.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

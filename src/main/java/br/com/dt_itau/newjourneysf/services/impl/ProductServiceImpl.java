@@ -1,10 +1,7 @@
 package br.com.dt_itau.newjourneysf.services.impl;
 
 
-
-import br.com.dt_itau.newjourneysf.entities.CategoryEntity;
 import br.com.dt_itau.newjourneysf.entities.ProductEntity;
-import br.com.dt_itau.newjourneysf.models.Category;
 import br.com.dt_itau.newjourneysf.models.Product;
 import br.com.dt_itau.newjourneysf.repositories.ProductRepository;
 import br.com.dt_itau.newjourneysf.services.ProductService;
@@ -21,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> getProductsdAll() {
+    public List<Product> getProductsAll() {
         return this.productRepository.findAll().stream().map(ProductEntity::toModel).collect(Collectors.toList());
     }
 

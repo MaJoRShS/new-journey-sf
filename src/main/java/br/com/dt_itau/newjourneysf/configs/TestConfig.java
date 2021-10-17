@@ -1,23 +1,15 @@
 package br.com.dt_itau.newjourneysf.configs;
 
-import java.time.Instant;
-import java.util.Arrays;
-
-import br.com.dt_itau.newjourneysf.entities.OrderEntity;
-import br.com.dt_itau.newjourneysf.entities.ProductEntity;
-import br.com.dt_itau.newjourneysf.entities.UserEntity;
-import br.com.dt_itau.newjourneysf.models.Category;
-import br.com.dt_itau.newjourneysf.repositories.OrderRepository;
-import br.com.dt_itau.newjourneysf.repositories.ProductRepository;
-import br.com.dt_itau.newjourneysf.repositories.UserRepository;
+import br.com.dt_itau.newjourneysf.entities.*;
+import br.com.dt_itau.newjourneysf.entities.enums.OrderStatus;
+import br.com.dt_itau.newjourneysf.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import br.com.dt_itau.newjourneysf.entities.CategoryEntity;
-import br.com.dt_itau.newjourneysf.entities.enums.OrderStatus;
-import br.com.dt_itau.newjourneysf.repositories.CategoryRepository;
+import java.time.Instant;
+import java.util.Arrays;
 
 @Configuration
 @Profile("test")
@@ -34,12 +26,12 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
-//
-//    @Autowired
-//    private OrderItemRepository orderItemRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         CategoryEntity cat1 = new CategoryEntity(null, "Electronics");
         CategoryEntity cat2 = new CategoryEntity(null, "Books");
         CategoryEntity cat3 = new CategoryEntity(null, "Computers");
@@ -73,17 +65,22 @@ public class TestConfig implements CommandLineRunner {
         p4.getCategories().add(cat3);
         p5.getCategories().add(cat2);
 
+
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-//
-//        OrderItemEntity oi1 = new OrderItemEntity(o1, p1, 2, p1.getPrice());
+        System.out.println(p5);
+        System.out.println(p5.toModel());
+
+
+//        OrderItemEntity oi1 = new OrderItemEntity(o1.toModel(), p1.toModel(), 2, p1.getPrice());
 //        OrderItemEntity oi2 = new OrderItemEntity(o1, p3, 1, p3.getPrice());
 //        OrderItemEntity oi3 = new OrderItemEntity(o2, p3, 2, p3.getPrice());
 //        OrderItemEntity oi4 = new OrderItemEntity(o3, p5, 2, p5.getPrice());
 //
 //        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+////        orderItemRepository.save(oi1);
 //
-//        PaymentEntity pay1 = new PaymentEntity(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
-//        o1.setPayment(pay1);
+//        PaymentEntity pay1 = new PaymentEntity(null, Instant.parse("2019-06-20T21:53:07Z"), o1.toModel());
+//        o1.setPayment(pay1.toModel());
 //
 //        orderRepository.save(o1);
     }

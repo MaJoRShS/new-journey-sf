@@ -1,5 +1,6 @@
 package br.com.dt_itau.newjourneysf.controllers.presenters;
 
+import br.com.dt_itau.newjourneysf.entities.CategoryEntity;
 import br.com.dt_itau.newjourneysf.models.Category;
 import br.com.dt_itau.newjourneysf.models.Product;
 
@@ -9,7 +10,7 @@ public class ProductPresenter {
     private String description;
     private Double price;
     private String imgUrl;
-    private CategoryPresenter categories;
+    private CategoryEntity category;
 
     public ProductPresenter(Product product) {
         if (product != null) {
@@ -17,7 +18,6 @@ public class ProductPresenter {
             this.description = product.getDescription();
             this.price = product.getPrice();
             this.imgUrl = product.getImgUrl();
-            this.categories = new CategoryPresenter(product.getCategories());
 
         }
     }
@@ -54,11 +54,11 @@ public class ProductPresenter {
         this.imgUrl = imgUrl;
     }
 
-    public CategoryPresenter getCategories() {
-        return categories;
+    public CategoryEntity getCategory() {
+        return category;
     }
 
-    public void setCategories(CategoryPresenter categories) {
-        this.categories = categories;
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 }

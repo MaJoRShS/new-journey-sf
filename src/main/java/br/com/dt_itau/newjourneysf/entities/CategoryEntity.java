@@ -2,7 +2,6 @@ package br.com.dt_itau.newjourneysf.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -13,7 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import br.com.dt_itau.newjourneysf.models.Category;
-import br.com.dt_itau.newjourneysf.models.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -66,6 +64,16 @@ public class CategoryEntity implements Serializable {
 
         return category;
 
+    }
+
+
+    @Override
+    public String toString() {
+        return "CategoryEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", product=" + product +
+                '}';
     }
 }
 
