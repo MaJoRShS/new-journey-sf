@@ -10,7 +10,7 @@ public class ProductPresenter {
     private String description;
     private Double price;
     private String imgUrl;
-    private CategoryEntity category;
+    private CategoryPresenter category;
 
     public ProductPresenter(Product product) {
         if (product != null) {
@@ -54,11 +54,11 @@ public class ProductPresenter {
         this.imgUrl = imgUrl;
     }
 
-    public CategoryEntity getCategory() {
+    public CategoryPresenter getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
+    public void setCategory(CategoryPresenter category) {
         this.category = category;
     }
 }

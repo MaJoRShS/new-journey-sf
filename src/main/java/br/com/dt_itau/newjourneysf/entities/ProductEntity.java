@@ -1,5 +1,6 @@
 package br.com.dt_itau.newjourneysf.entities;
 
+import br.com.dt_itau.newjourneysf.models.Category;
 import br.com.dt_itau.newjourneysf.models.Product;
 
 import javax.persistence.*;
@@ -18,7 +19,6 @@ public class ProductEntity implements Serializable {
     private String description;
     private Double price;
     private String imgUrl;
-    private CategoryEntity category;
 
     @ManyToMany
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -27,8 +27,8 @@ public class ProductEntity implements Serializable {
 //    @OneToMany(mappedBy = "id.product")
 //    private Set<OrderItem> items = new HashSet<>();
 
+    public ProductEntity(){
 
-    public ProductEntity() {
     }
 
     public ProductEntity(Long id, String name, String description, Double price, String imgUrl) {
@@ -87,15 +87,7 @@ public class ProductEntity implements Serializable {
         this.categories = categories;
     }
 
-    public CategoryEntity getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryEntity category) {
-        this.category = category;
-    }
-
-    //    @JsonIgnore
+    //        @JsonIgnore
 //    public Set<Order> getOrders() {
 //        Set<Order> set = new HashSet<>();
 //        for (OrderItem x : items) {
@@ -112,20 +104,7 @@ public class ProductEntity implements Serializable {
         product.setPrice(this.price);
         product.setImgUrl(this.imgUrl);
 
-
         return product;
 
-    }
-
-    @Override
-    public String toString() {
-        return "ProductEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", imgUrl='" + imgUrl + '\'' +
-                ", categories=" + categories +
-                '}';
     }
 }

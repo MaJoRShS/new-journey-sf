@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Set;
 
 @Configuration
 @Profile("test")
@@ -27,8 +28,8 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private OrderItemRepository orderItemRepository;
+//    @Autowired
+//    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) {
@@ -65,10 +66,7 @@ public class TestConfig implements CommandLineRunner {
         p4.getCategories().add(cat3);
         p5.getCategories().add(cat2);
 
-
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-        System.out.println(p5);
-        System.out.println(p5.toModel());
 
 
 //        OrderItemEntity oi1 = new OrderItemEntity(o1.toModel(), p1.toModel(), 2, p1.getPrice());

@@ -1,6 +1,5 @@
 package br.com.dt_itau.newjourneysf.models;
 
-import br.com.dt_itau.newjourneysf.entities.UserEntity;
 import br.com.dt_itau.newjourneysf.entities.enums.OrderStatus;
 
 import java.time.Instant;
@@ -35,15 +34,5 @@ public class Order {
     }
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", moment=" + moment +
-                ", client=" + client +
-                ", orderStatus=" + orderStatus +
-                '}';
     }
 }

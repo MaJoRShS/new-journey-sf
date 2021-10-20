@@ -1,18 +1,14 @@
 package br.com.dt_itau.newjourneysf.entities;
 
-import java.io.Serializable;
-import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import br.com.dt_itau.newjourneysf.entities.enums.OrderStatus;
 import br.com.dt_itau.newjourneysf.models.Order;
-import br.com.dt_itau.newjourneysf.models.OrderItem;
-import br.com.dt_itau.newjourneysf.models.Payment;
 import br.com.dt_itau.newjourneysf.models.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -26,17 +22,20 @@ public class OrderEntity implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    private Integer orderStatus;
+    private OrderStatus orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private UserEntity client;
 
-    @OneToMany(mappedBy = "id.order")
-    private Set<OrderItem> items = new HashSet<>();
+//    @OneToMany(mappedBy = "id.order")
+//    private Set<OrderItem> items = new HashSet<>();
+//
+//    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+//    private Payment payment;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private Payment payment;
+    public OrderEntity() {
+    }
 
     public OrderEntity(Long id, Instant moment, OrderStatus orderStatus, UserEntity client) {
         this.id = id;
@@ -61,14 +60,23 @@ public class OrderEntity implements Serializable {
         this.moment = moment;
     }
 
+//    public OrderStatus getOrderStatus() {
+//        return OrderStatus.valueOf(orderStatus);
+//    }
+//
+//    public void setOrderStatus(OrderStatus orderStatus) {
+//        if (orderStatus != null) {
+//            this.orderStatus = orderStatus.getCode();
+//        }
+//    }
+
+
     public OrderStatus getOrderStatus() {
-        return OrderStatus.valueOf(orderStatus);
+        return orderStatus;
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
-        if (orderStatus != null) {
-            this.orderStatus = orderStatus.getCode();
-        }
+        this.orderStatus = orderStatus;
     }
 
     public UserEntity getClient() {
@@ -79,19 +87,19 @@ public class OrderEntity implements Serializable {
         this.client = client;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public Set<OrderItem> getItems() {
-        return items;
-    }
-
+//    public Payment getPayment() {
+//        return payment;
+//    }
 //
+//    public void setPayment(Payment payment) {
+//        this.payment = payment;
+//    }
+//
+//    public Set<OrderItem> getItems() {
+//        return items;
+//    }
+
+
 //    public Double getTotal() {
 //        double sum = 0.0;
 //        for (OrderItem x : items) {
@@ -109,5 +117,5 @@ public class OrderEntity implements Serializable {
 
         return order;
     }
-
 }
+
