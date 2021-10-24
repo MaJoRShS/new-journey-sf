@@ -1,5 +1,7 @@
 package br.com.dt_itau.newjourneysf.services;
 
+import br.com.dt_itau.newjourneysf.controllers.parameters.UserParameter;
+import br.com.dt_itau.newjourneysf.entities.UserEntity;
 import br.com.dt_itau.newjourneysf.models.User;
 
 import java.util.List;
@@ -8,9 +10,9 @@ public interface UserService {
 
     List<User> getUsersAll();
     User getUsersById(Long id);
-    User insert(User obj);
+    UserParameter insert(UserParameter obj);
     void delete(Long id);
-    User update(Long id, User obj);
+    UserParameter update(Long id, UserParameter obj);
 
 
 }

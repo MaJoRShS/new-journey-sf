@@ -1,17 +1,17 @@
 package br.com.dt_itau.newjourneysf.controllers;
 
-import br.com.dt_itau.newjourneysf.controllers.presenters.CategoryPresenter;
+import br.com.dt_itau.newjourneysf.controllers.parameters.UserParameter;
 import br.com.dt_itau.newjourneysf.controllers.presenters.UserPresenter;
-import br.com.dt_itau.newjourneysf.services.CategoryService;
+import br.com.dt_itau.newjourneysf.entities.UserEntity;
+import br.com.dt_itau.newjourneysf.models.User;
 import br.com.dt_itau.newjourneysf.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,5 +59,26 @@ public class UserController {
     public ResponseEntity<UserPresenter> findById(@PathVariable Long id) {
         var response = this.userService.getUsersById(id);
         return new ResponseEntity<>(new UserPresenter(response), HttpStatus.OK);
+    }
+
+
+    @PostMapping
+    public ResponseEntity<UserParameter> insert(@RequestBody UserParameter obj){
+        obj = userService.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.toModel().getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<UserParameter> update(@PathVariable Long id, @RequestBody UserParameter obj){
+        obj = userService.update(id, obj);
+        return ResponseEntity.ok().body(obj);
     }
 }

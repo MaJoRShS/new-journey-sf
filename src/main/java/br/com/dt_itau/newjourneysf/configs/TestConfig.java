@@ -2,6 +2,7 @@ package br.com.dt_itau.newjourneysf.configs;
 
 import br.com.dt_itau.newjourneysf.entities.*;
 import br.com.dt_itau.newjourneysf.entities.enums.OrderStatus;
+import br.com.dt_itau.newjourneysf.models.User;
 import br.com.dt_itau.newjourneysf.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

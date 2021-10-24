@@ -1,13 +1,16 @@
 package br.com.dt_itau.newjourneysf.services.impl;
 
+import br.com.dt_itau.newjourneysf.controllers.parameters.UserParameter;
 import br.com.dt_itau.newjourneysf.entities.UserEntity;
 import br.com.dt_itau.newjourneysf.models.User;
 import br.com.dt_itau.newjourneysf.repositories.UserRepository;
 import br.com.dt_itau.newjourneysf.services.UserService;
+import br.com.dt_itau.newjourneysf.services.exceptions.NotFoundXeXe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,26 +33,40 @@ public class UserServiceImpl implements UserService {
         return userById.get().toModel();
     }
 
-    @PostMapping
-    public User insert(@RequestBody User obj){
-//        obj = userService.insert(obj);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-//        return User.created(uri).body(obj);
-        return null;
+    @Override
+    public UserParameter insert(UserParameter obj) {
+        UserEntity userEntity = obj.toModel().toEntity();
+        userRepository.save(userEntity);
+        return obj;
     }
-//
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id){
-//        userService.delete(id);
-//        return User.noContent().build();
+
+
+    public void delete(Long id) {
+//        try {
+//            userRepository.deleteById(id);
+//        }catch (EmptyResultDataAccessException e){
+//            throw new ResourceNotFoundException(id);
+//        }catch (DataIntegrityViolationException e){
+//            throw new DatabaseException(e.getMessage());
+//        }
     }
-//
-//
-    @PutMapping(value = "/{id}")
-    public User update(@PathVariable Long id, @RequestBody User obj){
-//        obj = service.update(id, obj);
-//        return ResponseEntity.ok().body(obj);
-        return  null;
+
+    public UserParameter update(Long id, UserParameter obj) {
+        try {
+            UserEntity entity = userRepository.getOne(id);
+            updataData(entity, obj.toModel());
+            userRepository.save(entity);
+            return obj;
+        }catch (EntityNotFoundException e){
+            throw new NotFoundXeXe(id);
+        }
+    }
+
+    private void updataData(UserEntity entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+
     }
 }
 
